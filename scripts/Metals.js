@@ -1,4 +1,4 @@
-import { getMetals } from "./database.js"
+import { getCurrentOrder, getMetals, setMetal } from "./database.js"
 
 const metals = getMetals()
 
@@ -6,12 +6,14 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "metal") {
-            window.alert(`User chose metal ${event.target.value}`)
+            setMetal(parseInt(event.target.value))
         }
     }        
 )
 
 export const Metals = () => {
+    const currentOrder = getCurrentOrder()
+    
     let html = "<ul>"
 
     // This is how you have been converting objects to <li> elements
